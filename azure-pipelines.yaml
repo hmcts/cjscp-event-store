@@ -1,5 +1,5 @@
 name: CJS Library Build & Publish
- 
+
 trigger:
   tags:
     include:
@@ -10,10 +10,10 @@ trigger:
   paths:
     include:
       - '*'
- 
+
 pr:
   - '*'
- 
+
 resources:
   repositories:
     - repository: cppAzureDevOpsTemplates
@@ -21,23 +21,23 @@ resources:
       name: hmcts/cpp-azure-devops-templates
       endpoint: 'hmcts'
       ref: 'review-comment'
- 
+
     - repository: buildSettings
       type: github
       name: hmcts/cjscp-build-setting
       endpoint: 'hmcts'
       ref: 'main'
- 
+
 pool:
   name: 'MDV-ADO-AGENT-AKS-01'
   demands:
     - identifier -equals centos8-j17-postgres
- 
+
 variables:
   - name: sonarqubeProject
     value: "uk.gov.justice.event-store:event-store"
   - group: "cjs-common-platform"
- 
+
 stages:
   - template: pipelines/cjscp-framework-build.yaml@cppAzureDevOpsTemplates
     parameters:
